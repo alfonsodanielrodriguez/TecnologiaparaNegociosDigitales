@@ -9,3 +9,5 @@ body{background-color:#06172f;background-image:linear-gradient(#79baff06 1px,tra
 
 /* Logo UCU: JPEG local, proporciones cuadradas y fondo blanco. */
 .logo-wrap{padding:3px;background:#fff;min-width:74px;min-height:74px}.logo-wrap img{width:68px;height:68px;max-width:none;object-fit:contain;visibility:visible;opacity:1}@media(max-width:700px){.logo-wrap{min-width:58px;min-height:58px;padding:3px}.logo-wrap img{width:52px;height:52px}.brand small{max-width:160px;line-height:1.5}}
+
+body.playing{background:transparent}#scene{z-index:0}#arjs-video{z-index:0!important}#scene canvas{z-index:1!important}.hud,.reticle,.clue{z-index:2}
