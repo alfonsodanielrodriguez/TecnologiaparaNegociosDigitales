@@ -12,23 +12,4 @@ body{background-color:#06172f;background-image:linear-gradient(#79baff06 1px,tra
 
 body.playing{background:#06172f}#scene{z-index:0}#arjs-video{z-index:0!important;object-fit:contain}#scene canvas{z-index:1!important;object-fit:contain;background:transparent!important}.hud,.reticle,.clue{z-index:2}
 
-
-/* Ajuste camara AR: video y canvas al tamano de la pantalla */
 html{background:#06172f}
-body.playing{background:#06172f}
-
-#scene{position:fixed;inset:0;width:100%;height:100dvh;overflow:hidden;z-index:0}
-#scene a-scene{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;margin:0!important}
-
-#arjs-video,
-#scene canvas{
-  position:fixed!important;
-  top:0!important;left:0!important;
-  width:100vw!important;height:100dvh!important;
-  margin:0!important;
-  transform:none!important;
-  object-fit:contain!important;
-  background:transparent!important;
-}
-#arjs-video{z-index:0!important}
-#scene canvas{z-index:1!important}
