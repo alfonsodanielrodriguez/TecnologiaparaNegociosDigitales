@@ -13,3 +13,87 @@ body{background-color:#06172f;background-image:linear-gradient(#79baff06 1px,tra
 body.playing{background:#06172f}#scene{z-index:0}#arjs-video{z-index:0!important;object-fit:contain}#scene canvas{z-index:1!important;object-fit:contain;background:transparent!important}.hud,.reticle,.clue{z-index:2}
 
 html{background:#06172f}
+
+/* ===== Ajustes responsive (celular + camara AR) ===== */
+/* Evita barras horizontales cuando el titulo y el plano se hacen angostos. */
+html,body{max-width:100%;overflow-x:clip}
+main>*,.intro,.steps,.steps article{min-width:0}
+button{touch-action:manipulation}
+
+/* La camara real de AR.js esta fuera de #play; no taparla con fondos opacos. */
+body.playing{overflow:hidden;overscroll-behavior:none}
+#play{height:100vh;height:100dvh;overflow:hidden;background:transparent;isolation:isolate}
+#scene{inset:0;z-index:0;pointer-events:none}
+#scene a-scene{background:transparent!important}
+#arjs-video{position:fixed!important;max-width:none!important;max-height:none!important;object-fit:cover!important;pointer-events:none;z-index:0!important}
+#scene canvas{position:fixed!important;max-width:none!important;max-height:none!important;display:block;pointer-events:none;background:transparent!important;z-index:1!important}
+.hud,.clue{z-index:4}
+.reticle{z-index:3}
+
+@media(max-width:900px){
+  main{grid-template-columns:minmax(0,1fr);max-width:750px;gap:30px;padding-top:40px}
+  .art{min-height:380px}
+  .steps{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:4px}
+}
+@media(max-width:700px){
+  header{padding:16px 5%;gap:12px;flex-wrap:wrap}
+  .brand{flex:1 1 185px;min-width:0;font-size:12px;letter-spacing:1px}
+  .brand>span:last-child{min-width:0;overflow-wrap:anywhere}
+  .brand small{letter-spacing:0.5px;font-size:8px}
+  header>a:last-child{margin-left:auto;flex-shrink:0}
+  .logo-wrap{min-width:54px;min-height:54px}
+  .logo-wrap img{width:48px;height:48px}
+  main{width:100%;padding:32px 5% 20px;gap:24px}
+  h1{font-size:clamp(35px,9.5vw,54px);letter-spacing:-.055em;line-height:1.08;overflow-wrap:anywhere;margin:20px 0}
+  .academic{margin-bottom:22px}
+  .intro .lead{font-size:clamp(16px,4.5vw,19px)}
+  .intro>p{max-width:100%}
+  .actions{flex-wrap:wrap;gap:14px 20px;margin-top:24px}
+  .actions button{min-height:48px}
+  .blueprint{min-height:355px;width:100%;padding:12px}
+  .floorplan{height:270px}
+  .room{height:104px}
+  .steps{grid-template-columns:minmax(0,1fr);gap:12px;margin-top:6px;padding-top:22px}
+  .steps article{padding:12px 0}
+  .steps h2{margin:10px 0;font-size:21px}
+  footer{margin:20px 5%;gap:12px;align-items:center}
+  .hud{top:0;min-height:64px;padding:calc(12px + env(safe-area-inset-top,0px)) 12px 12px;gap:8px;font-size:11px;background:linear-gradient(#06172ff5,#06172fdc)}
+  .hud .secondary{padding:10px 12px;min-height:44px;box-shadow:none;white-space:nowrap}
+  #progress,#clock{white-space:nowrap}
+  .reticle{top:43%;width:min(45vw,180px);height:auto;aspect-ratio:1}
+  .clue{left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));padding:12px 14px;max-width:540px;max-height:36dvh;overflow-y:auto}
+  .clue h2{font-size:clamp(20px,5.5vw,26px);margin:6px 0}
+  .clue p{font-size:13px;line-height:1.45;margin:5px 0}
+  .clue .tag{font-size:9px;letter-spacing:1px}
+  #dots{letter-spacing:8px}
+  dialog{width:calc(100% - 24px);max-height:calc(100dvh - 36px);overflow-y:auto;padding:24px 18px}
+  dialog h2{font-size:clamp(25px,7vw,36px)}
+}
+@media(max-width:380px){
+  .brand{flex-basis:100%}
+  header>a:last-child{margin-left:0}
+  .actions button{width:100%}
+  .blueprint{min-height:335px}
+  .floorplan{height:250px}
+  .plan-top>span:first-child{white-space:nowrap;font-size:25px}
+  .plan-top>span:last-child{font-size:8px}
+  .room{height:93px;padding:7px}
+  .room>span{font-size:19px}
+  .room small{font-size:7px}
+  .core{width:68px;height:68px;left:7%;bottom:14px}
+  .core span{font-size:30px}
+  .route1{height:145px}
+  .plan-top,.plan-bottom{font-size:8px}
+  .hud{font-size:10px;padding-inline:8px}
+  .hud .secondary{padding:10px 9px}
+  .clue{padding:10px 12px}
+}
+/* En telefono horizontal dejar libre el centro para leer el marcador. */
+@media(max-height:480px) and (orientation:landscape){
+  .hud{padding:calc(5px + env(safe-area-inset-top,0px)) 12px 5px;min-height:46px}
+  .hud .secondary{min-height:36px;padding:7px 12px}
+  .reticle{left:38%;top:55%;width:min(30vh,145px)}
+  .clue{left:auto;right:calc(8px + env(safe-area-inset-right,0px));bottom:8px;width:42vw;max-height:calc(100dvh - 60px);padding:8px 12px}
+  .clue h2{font-size:18px}
+  .clue p{font-size:12px}
+}
